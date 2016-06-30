@@ -16,7 +16,7 @@ if %w(rhel fedora).include?(node['platform_family'])
     service "st2 remove systemd mongo#{letter} service" do
       service_name "mongo#{letter}"
       provider Chef::Provider::Service::Systemd
-      action [ :stop, :disable ]
+      action [:stop, :disable]
       only_if { ::File.exist?("/lib/systemd/system/mongo#{letter}.service") }
     end
 
@@ -34,10 +34,10 @@ end
 
 mongodb_instance node['mongodb']['instance_name'] do
   mongodb_type 'mongod'
-  bind_ip      node['mongodb']['config']['bind_ip']
-  port         node['mongodb']['config']['port']
-  logpath      node['mongodb']['config']['logpath']
-  dbpath       node['mongodb']['config']['dbpath']
-  enable_rest  node['mongodb']['config']['rest']
-  smallfiles   node['mongodb']['config']['smallfiles']
+  bind_ip node['mongodb']['config']['bind_ip']
+  port node['mongodb']['config']['port']
+  logpath node['mongodb']['config']['logpath']
+  dbpath node['mongodb']['config']['dbpath']
+  enable_rest node['mongodb']['config']['rest']
+  smallfiles node['mongodb']['config']['smallfiles']
 end
